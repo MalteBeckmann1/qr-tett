@@ -30,10 +30,16 @@
   <div class="container">
     <div class="row">
 
+      <p id="universityImgContainer">
+        Test img
+      </p>
+
 
       <p class="university">
         Test
       </p>
+
+
 
 
 
@@ -43,21 +49,36 @@
 
 
   <script>
+    // variable university name from URL param
+    $.urlParam = function(name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      return results[1] || 0;
+    }
+
+    // set variable to name
+    let universityName = $.urlParam('university');
+
+    // JSON mit Variable holen
     $.ajax({
-      url: "static/university/Leuphana.json"
+      url: "static/university/" + universityName + ".json"
     }).done(function(data) {
 
       var items = [];
 
+      // create list item in HTML
       $.each(data, function(key, val) {
         items.push("<li id='" + key + "'>" + val + "</li>");
       });
 
+      // append list item to selected class
       $("<ul/>", {
         "class": "university",
         html: items.join("")
       }).appendTo("body");
 
+      // append picture of university to selected id
+      $('#universityImgContainer').prepend('<img id="universityImg" src="./assets/media/img/universities/' + universityName + '.jpg" />')
+      console.log(universityImgContainer);
 
     });
   </script>
