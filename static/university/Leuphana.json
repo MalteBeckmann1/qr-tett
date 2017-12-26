@@ -1,5 +1,7 @@
 {
   "amountStudents": "7000",
   "sizeCampus": "29384 m²",
-  "semesterFee": "350,- €"
+  "semesterFee": "350,- €",
+  "amountCourses": "34",
+  "funFact": "xyz"
 }
