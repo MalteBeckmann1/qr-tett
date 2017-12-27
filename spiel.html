@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>QR-TETT</title>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/lux/bootstrap.min.css" crossorigin="anonymous">
+
+
+  <script>
+    $(function() {
+      $("#navbar").load("static/navbar.html");
+      $("#header").load("static/header.html");
+    });
+  </script>
+
+</head>
+
+<body>
+
+
+
+
+  <div id="navbar"></div>
+
+  <div id="header"></div>
+
+  <div class="container">
+    <div class="row">
+
+      <p id="universityImgContainer">
+        Test img
+      </p>
+
+
+      <p class="university">
+        Test
+      </p>
+
+
+
+
+
+    </div>
+
+  </div>
+
+
+  <script>
+    // variable university name from URL param
+    $.urlParam = function(name) {
+      var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      return results[1] || 0;
+    }
+
+    // set variable to name
+    let universityName = $.urlParam('university');
+
+    // JSON mit Variable holen
+    $.ajax({
+      url: "static/university/" + universityName + ".json"
+    }).done(function(data) {
+
+      var items = [];
+
+      // create list item in HTML
+      $.each(data, function(key, val) {
+        items.push("<li id='" + key + "'>" + val + "</li>");
+      });
+
+      // append list item to selected class
+      $("<ul/>", {
+        "class": "university",
+        html: items.join("")
+      }).appendTo("body");
+
+      // append picture of university to selected id
+      $('#universityImgContainer').prepend('<img id="universityImg" src="./assets/media/img/universities/' + universityName + '.jpg" />')
+      console.log(universityImgContainer);
+
+    });
+  </script>
+
+</body>
+
+</html>
