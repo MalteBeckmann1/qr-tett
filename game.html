@@ -7,7 +7,7 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/lux/bootstrap.min.css" crossorigin="anonymous">
-
+  <link href="assets/css/style.css" rel="stylesheet">
 
   <script>
     $(function() {
@@ -28,25 +28,29 @@
   <div id="header"></div>
 
   <div class="container">
-    <div class="row">
 
-      <p id="universityImgContainer">
-        Test img
-      </p>
+    <div class="row gameCont  ainer">
+      <div class="col-md-3 col-sm-2">
+      </div>
 
+      <div class="gameCard col-sm-10 col-md-6 ">
 
-      <p class="university">
-        Test
-      </p>
+        <div id="universityImg">
+        </div>
 
+        <div id="universityData">
+          <p class="universityDataContainer">
+          </p>
+        </div>
 
+      </div>
 
-
+      <div class="col-md-3 col-sm-2">
+      </div>
 
     </div>
 
   </div>
-
 
   <script>
     // variable university name from URL param
@@ -72,13 +76,13 @@
 
       // append list item to selected class
       $("<ul/>", {
-        "class": "university",
+        "class": "universityDataList",
         html: items.join("")
-      }).appendTo("body");
+      }).appendTo(".universityDataContainer");
 
       // append picture of university to selected id
-      $('#universityImgContainer').prepend('<img id="universityImg" src="./assets/media/img/universities/' + universityName + '.jpg" />')
-      console.log(universityImgContainer);
+      $('#universityImg ').prepend('<img id="universityImg" class="img-thumbnail" src="./assets/media/img/universities/' + universityName + '.jpg" />')
+      console.log(universityImg);
 
     });
   </script>
