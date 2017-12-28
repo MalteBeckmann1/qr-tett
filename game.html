@@ -29,11 +29,16 @@
 
   <div class="container">
 
-    <div class="row gameCont  ainer">
+    <div class="row gameContainer">
       <div class="col-md-3 col-sm-2">
       </div>
 
       <div class="gameCard col-sm-10 col-md-6 ">
+
+        <div id="universityName">
+          <p class="universityNameContainer">
+          </p>
+        </div>
 
         <div id="universityImg">
         </div>
@@ -68,11 +73,20 @@
     }).done(function(data) {
 
       var items = [];
+      var name;
 
       // create list item in HTML
       $.each(data, function(key, val) {
-        items.push("<li id='" + key + "'>" + val + "</li>");
+        if (key != "name") {
+          items.push("<li id='" + key + "'>" + val + "</li>");
+        } else {
+          name = val;
+        }
       });
+
+      // set universityName
+      $('#universityName').prepend('<h1>' + name + '</h1>');
+      console.log(name);
 
       // append list item to selected class
       $("<ul/>", {
@@ -81,7 +95,7 @@
       }).appendTo(".universityDataContainer");
 
       // append picture of university to selected id
-      $('#universityImg ').prepend('<img id="universityImg" class="img-thumbnail" src="./assets/media/img/universities/' + universityName + '.jpg" />')
+      $('#universityImg').prepend('<img id="universityImg" class="img-thumbnail" src="./assets/media/img/universities/' + universityName + '.jpg" />')
       console.log(universityImg);
 
     });
